@@ -14,8 +14,8 @@ import React, { useState } from 'react';
     { label: '7', value: '7' },
     { label: '8', value: '8' },
   ];
- 
-  const onSubmit = (data) => console.log(data)
+
+  
 
   const Form = () => {
     const {
@@ -28,6 +28,7 @@ import React, { useState } from 'react';
           lastName: "",
         },
       })
+      
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [ElectricityUsage, setElectricityUsage] = useState(0);
@@ -36,7 +37,8 @@ import React, { useState } from 'react';
     const [CoalUsage, setCoalUsage] = useState(0);
     const [WoodenPellets, setWoodenPellets] = useState(0);
     const [Propane, setPropane] = useState(0);
-
+    let data=[ElectricityUsage, NaturalGasUsage, LPGCylinders, CoalUsage, WoodenPellets, Propane];
+    const onSubmit = () => console.log(data);
     return (
         
       <View style={styles.container}>
@@ -44,7 +46,7 @@ import React, { useState } from 'react';
          <Controller
         control={control}
         rules={{
-          required: true,
+          required: false,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
         <View style={styles.Input}>
@@ -54,7 +56,8 @@ import React, { useState } from 'react';
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 8, paddingHorizontal: 8, }}
             placeholder="kilowatt hours"
             onBlur={onBlur}
-            onChangeText={(text) => setElectricityUsage(text)}
+            onChangeText={(text) => {setElectricityUsage(text)
+            console.log(ElectricityUsage)}}
             value={value}
           />
         </View>
@@ -65,7 +68,7 @@ import React, { useState } from 'react';
       <Controller
         control={control}
         rules={{
-          required: true,
+          required: false,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
         <View style={styles.Input}>
@@ -120,7 +123,7 @@ import React, { useState } from 'react';
       <Controller
         control={control}
         rules={{
-          required: true,
+          required: false,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
         <View style={styles.Input}>
@@ -141,7 +144,7 @@ import React, { useState } from 'react';
       <Controller
         control={control}
         rules={{
-          required: true,
+          required: false,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
         <View style={styles.Input}>
@@ -162,7 +165,7 @@ import React, { useState } from 'react';
       <Controller
         control={control}
         rules={{
-          required: true,
+          required: false,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
         <View style={styles.Input}>
