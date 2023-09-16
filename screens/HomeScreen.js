@@ -1,14 +1,31 @@
-import React from 'react'
-import { SafeAreaView, View, Text, Button} from 'react-native'
+import React from "react";
+import { SafeAreaView, View, Text, Button, StyleSheet } from "react-native";
+import ShowScore from "../components/ShowScore";
 
 function HomeScreen({ navigation }) {
   return (
-   <SafeAreaView>
-       <View>
-              <Text>Your Current Score</Text>
+  
+      <View style={styles.container}>
+        <View style={{alignItems:"center", marginVertical:30}}>
+          <Text style={styles.currentScore}>Your Current Score</Text>
         </View>
-   </SafeAreaView>
-  )
+        <ShowScore />
+      </View>
+   
+  );
 }
 
-export default HomeScreen
+export default HomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#1E1E1E",
+    flex:1,
+    alignContent: "center",
+  },
+  currentScore:{
+    fontSize:25,
+    color:"white",
+    fontWeight:"bold",
+  }
+});
