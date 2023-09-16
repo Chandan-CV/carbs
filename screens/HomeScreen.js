@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Button, StyleSheet } from "react-native";
 import ShowScore from "../components/ShowScore";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from "expo-location";
@@ -7,6 +7,9 @@ function HomeScreen({ navigation }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
+  useEffect(async()=>{
+    await getLocation();
+  },[])
   const getLocation = async () => {
 
     let { status } = await requestForegroundPermissionsAsync();
@@ -35,7 +38,6 @@ function HomeScreen({ navigation }) {
       </View>
       <ShowScore />
       <Text style={styles.currentScore}>{text}</Text>
-      <Button title="START" onPress={getLocation} />
     </View>
   );
 }
