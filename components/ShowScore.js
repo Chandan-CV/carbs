@@ -6,14 +6,14 @@ function ShowScore() {
   return (
   <View style={styles.container}>
     <ProgressCircle
-            percent={30}
+            percent={100}
             radius={100}
             borderWidth={20}
             color="#4EB829"
-            shadowColor="#999"
-            bgColor="#1E1E1E"
+            shadowColor="#fff"
+            bgColor="#fff"
         >
-            <Text style={{ fontSize: 36 , color:"white"}}>{'30%'}</Text>
+            <Text style={{ fontSize: 36 , color:"white"}}>{'40%'}</Text>
         </ProgressCircle>
   </View>
   )

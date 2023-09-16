@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Button, StyleSheet } from "react-native";
 import ShowScore from "../components/ShowScore";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from "expo-location";
+import YourActivity from "../components/YourActivity";
 
 function HomeScreen({ navigation }) {
   const [location, setLocation] = useState(null);
@@ -37,6 +38,7 @@ function HomeScreen({ navigation }) {
         <Text style={styles.currentScore}>Your Current Score</Text>
       </View>
       <ShowScore />
+      <YourActivity/>
       <Text style={styles.currentScore}>{text}</Text>
     </View>
   );
