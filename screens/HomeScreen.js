@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView, View, Text, Button, StyleSheet } from "react-native";
 import ShowScore from "../components/ShowScore";
+import YourActivity from "../components/YourActivity";
 
 function HomeScreen({ navigation }) {
   return (
@@ -10,6 +11,7 @@ function HomeScreen({ navigation }) {
           <Text style={styles.currentScore}>Your Current Score</Text>
         </View>
         <ShowScore />
+        <YourActivity />
       </View>
    
   );
