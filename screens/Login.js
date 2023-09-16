@@ -1,35 +1,26 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import React from "react";
-import { Button, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { auth } from "../fireBase";
-import { registerUser } from "../firebaseFunctions";
-
+// import { Link } from '@react-navigation/native';
+import React, { useState } from 'react'
+import { Button, Text, TextInput } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import {signInWithEmailAndPassword} from 'firebase/auth'
+import { auth } from '../fireBase'
 const Login = () => {
-  return (
-    <SafeAreaView>
-      <Button
-        title="Create  chandan"
-        onPress={() => {
-          registerUser("chandan", "chandancvp08@gmail.com", "chandan123")
-            .then(() => {
-              alert("User created successfully");
-            })
-            .catch((e) => {
-              alert(e.message);
-            });
-        }}
-      />
-      <View style={{margin:20}}/>
-      <Button
-      title="Login as  chandan"
-      onPress={() => {
-       signInWithEmailAndPassword(auth, "chandancvp08@gmail.com","chandan123")
-      }}
-    />
-     
-    </SafeAreaView>
-  );
-};
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    return (
+        <SafeAreaView>
+            <Text>Email</Text>
+            <TextInput value={email} onChangeText={setEmail} inputMode='email' />
+            <Text>Password</Text>
+            <TextInput value={password} onChangeText={setPassword} secureTextEntry={true} />
+            <Text>Don't have an account? <Button title='Create an account' onPress={() => {
+
+            }} /></Text>
+            <Button title='Submit' onPress={() => {
+              signInWithEmailAndPassword(auth, email, password)
+            }} />
+        </SafeAreaView>
+    )
+}
 
 export default Login;
