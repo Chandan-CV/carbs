@@ -38,7 +38,7 @@ const Form = () => {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: false,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <View style={styles.Input}>
@@ -65,7 +65,7 @@ const Form = () => {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: false,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <View style={styles.Input}>
@@ -125,7 +125,7 @@ const Form = () => {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: false,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <View style={styles.Input}>
@@ -152,7 +152,7 @@ const Form = () => {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: false,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <View style={styles.Input}>
@@ -179,7 +179,7 @@ const Form = () => {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: false,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <View style={styles.Input}>

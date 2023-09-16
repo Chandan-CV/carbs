@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
 import Login from "./screens/Login";
 import { Ionicons } from "@expo/vector-icons";
-import { PaperProvider } from "react-native-paper";
+import { Button, PaperProvider } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useEffect, useState } from "react";
 import { auth } from "./fireBase";
@@ -123,6 +123,13 @@ export default function App() {
               options={{
                 headerTitle: "Carbs",
                 headerTitleAlign: "center",
+                headerRight: () => (
+                  <View style={{ marginRight: 20 }}>
+                    <Button>
+                      Profile
+                    </Button>
+                  </View>
+                ),
                 //   tabBarIcon: ({size,focused,color}) => {
                 //   return (
                 //     <View>
