@@ -1,12 +1,17 @@
+import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
+import Login from "./screens/Login";
 import { Ionicons } from "@expo/vector-icons";
 import { PaperProvider } from "react-native-paper";
+import { createStackNavigator } from '@react-navigation/stack';
+
 // react-native-vector-icons/Ionicons otherwise.
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -45,6 +50,9 @@ export default function App() {
           />
           <Tab.Screen name="Settings" component={HomeScreen} />
         </Tab.Navigator>
+        <Stack.Navigator>
+          <Stack.Screen name='Login' component={Login} />
+        </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
   );
