@@ -5,6 +5,7 @@ import React, { useState } from 'react';
   import AntDesign from '@expo/vector-icons/AntDesign';
   import GOOGLE_MAPS_APIKEY from '../process.env';
   import {useForm , Controller} from "react-hook-form";
+import { AddData } from '../firebaseFunctions';
 
   const data = [
     { label: 'Economy Class', value: '1' },
@@ -127,7 +128,10 @@ import React, { useState } from 'react';
         </View>
       {errors.firstName && <Text>This is required.</Text>}
       
+      
       </View>
+       <Button style={styles.Button} color="green" title="Standardize All" height="80" onPress={handleSubmit(onSubmit)} />
+       <View style={{marginVertical:10}}/>
         <Button style={styles.Button2} title="Submit" onPress={handleSubmit(onSubmit)} />
       </View>
     );

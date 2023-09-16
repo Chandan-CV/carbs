@@ -5,6 +5,7 @@ import React, { useState } from 'react';
   import AntDesign from '@expo/vector-icons/AntDesign';
   import GOOGLE_MAPS_APIKEY from '../process.env';
   import {useForm , Controller} from "react-hook-form";
+import { AddData } from '../firebaseFunctions';
 
   const data = [
     { label: 'None', value: '0' },
@@ -19,7 +20,7 @@ import React, { useState } from 'react';
     { label: 'Above 500cc', value: '3' },
   ];
  
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => AddData(data);
 
   const Form3 = () => {
     const {
