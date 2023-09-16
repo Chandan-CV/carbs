@@ -48,11 +48,8 @@ export default function App() {
               headerTitleAlign: "center",
             }}
           />
-          <Tab.Screen name="Settings" component={HomeScreen} />
+          <Tab.Screen name="Login" component={Login} />
         </Tab.Navigator>
-        <Stack.Navigator>
-          <Stack.Screen name='Login' component={Login} />
-        </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
   );
