@@ -2,7 +2,7 @@ import React, { useState } from 'react';
   import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
   import { Dropdown } from 'react-native-element-dropdown';
   import AntDesign from '@expo/vector-icons/AntDesign';
-  import {useForm , Controller} from "react-hook-form";
+  import {useForm , Controller, set} from "react-hook-form";
 
   const data = [
     { label: '1', value: '1' },
@@ -30,6 +30,12 @@ import React, { useState } from 'react';
       })
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
+    const [ElectricityUsage, setElectricityUsage] = useState(0);
+    const [NaturalGasUsage, setNaturalGasUsage] = useState(0);
+    const [LPGCylinders, setLPGCylinders] = useState(0);
+    const [CoalUsage, setCoalUsage] = useState(0);
+    const [WoodenPellets, setWoodenPellets] = useState(0);
+    const [Propane, setPropane] = useState(0);
 
     return (
         
@@ -48,7 +54,7 @@ import React, { useState } from 'react';
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 8, paddingHorizontal: 8, }}
             placeholder="kilowatt hours"
             onBlur={onBlur}
-            onChangeText={onChange}
+            onChangeText={(text) => setElectricityUsage(text)}
             value={value}
           />
         </View>
@@ -69,7 +75,7 @@ import React, { useState } from 'react';
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 8, paddingHorizontal: 8, }}
             placeholder="Killowatt hours"
             onBlur={onBlur}
-            onChangeText={onChange}
+            onChangeText={(text) => setNaturalGasUsage(text)}
             value={value}
           />
         </View>
@@ -98,6 +104,7 @@ import React, { useState } from 'react';
           onChange={item => {
             setValue(item.value);
             setIsFocus(false);
+            setLPGCylinders(item.value);
           }}
           renderLeftIcon={() => (
             <AntDesign
@@ -123,7 +130,7 @@ import React, { useState } from 'react';
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 8, paddingHorizontal: 8, }}
             placeholder="kilogrames"
             onBlur={onBlur}
-            onChangeText={onChange}
+            onChangeText={(text) => setCoalUsage(text)}
             value={value}
           />
         </View>
@@ -144,7 +151,7 @@ import React, { useState } from 'react';
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 8, paddingHorizontal: 8, }}
             placeholder="kilogrames"
             onBlur={onBlur}
-            onChangeText={onChange}
+            onChangeText={(text) => setWoodenPellets(text)}
             value={value}
           />
         </View>
@@ -165,7 +172,7 @@ import React, { useState } from 'react';
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 8, paddingHorizontal: 8, }}
             placeholder="liters"
             onBlur={onBlur}
-            onChangeText={onChange}
+            onChangeText={(text) => setPropane(text)}
             value={value}
           />
         </View>
