@@ -13,6 +13,7 @@ function ShowScore() {
             shadowColor="#fff"
             bgColor="#000"
         >
+          <Text style={{ fontSize: 18 , color:"white"}}>{'40%'}</Text>
             <Text style={{ fontSize: 36 , color:"white"}}>{'40%'}</Text>
         </ProgressCircle>
   </View>

@@ -5,15 +5,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { PaperProvider } from "react-native-paper";
-import Form from "./screens/Form";
 import Form2 from "./components/Form2";
 import Form3 from "./components/Form3";
 import HomeIcon from "./assets/icons/HomeIcon";
+import Home from "./components/screens/Home";
+import Details from "./components/screens/Detail";
 import CommunityIcon from "./assets/icons/CommunityIcon";
 import Community from "./screens/Community";
 import LeaderboardIcon from "./assets/icons/LeaderboardsIcon";
 import TipsIcon from "./assets/icons/TipsIcon";
 import Profile from "./screens/Profile";
+import Posts from "./components/screens/Posts";
+import Tips from "./screens/Tips";
 // react-native-vector-icons/Ionicons otherwise.
 const Tab = createBottomTabNavigator();
 export default function App() {
@@ -80,8 +83,8 @@ export default function App() {
             }}
           />
           <Tab.Screen name="Community" component={Community} />
-          <Tab.Screen name="Leaderboards" component={Form} />
-          <Tab.Screen name="Tips" component={Form} />
+          <Tab.Screen name="Leaderboards" component={Posts} />
+          <Tab.Screen name="Tips" component={Tips} />
         </Tab.Navigator>
       </NavigationContainer>
     </PaperProvider>

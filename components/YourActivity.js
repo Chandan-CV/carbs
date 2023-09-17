@@ -18,7 +18,7 @@ function YourActivity() {
           </Text>
         </TouchableOpacity>
       );
-        const showMessage = () => Alert.alert('Button clicked !');        
+        const showMessage = () => {console.log("Button clicked !")};        
   return (
     <ScrollView style={{width:"100%"}}>
   <View style={styles.container}>
@@ -28,7 +28,7 @@ function YourActivity() {
     <View style={styles.container2}>
     
     <View style={{display:"flex", flexDirection:"row", justifyContent:"space-between", width:"100%", padding:16}}>
-        <Button style={styles.Button} color="#1E1E1E" height="80" title="" onPress={() => navigation.navigate('Form')} />
+        <Button style={styles.Button} color="#1E1E1E" height="80" title="" onPress={() => showMessage} />
         </View>
       <FlatList
       style={{width:"100%", gap:16, display:"flex", flexDirection:"column", flex:1,}}

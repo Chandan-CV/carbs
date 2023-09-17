@@ -3,13 +3,13 @@ import { Avatar, Button, Card, Text } from 'react-native-paper';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
-const Cards = () => (
+const Cards = (props) => (
   <Card>
-    <Card.Content>
-      <Text variant="titleLarge">Card title</Text>
-      <Text variant="bodyMedium">Card content</Text>
+    <Card.Content style={{marginBottom:10}}>
+      <Text variant="titleLarge">{props.head}</Text>
+      <Text variant="bodyMedium">{props.title}</Text>
     </Card.Content>
-    <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+    <Card.Cover source={{ uri:props.urri}} />
     <Card.Actions>
       <Button>Cancel</Button>
       <Button>Ok</Button>
