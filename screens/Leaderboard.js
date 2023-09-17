@@ -4,6 +4,7 @@ import { getCommunites, getCommunityData } from "../firebaseFunctions";
 import { Button } from "react-native-paper";
 
 function Leaderboard() {
+  const[refresh, setRefresh] = useState(0);
   const [communities, setCommunities] = useState([]);
   const [currentKey, setCurrentKey] = useState();
   const [CommunityData, setCommunityData] = useState();
@@ -13,14 +14,14 @@ function Leaderboard() {
       console.log(communities);
     }
     fetchData();
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     async function fetchData() {
       setCommunityData(await getCommunityData(currentKey));
     }
     fetchData();
-  }, [currentKey]);
+  }, [currentKey,refresh]);
   return (
     <View style={{ display: "flex", flex: 1, backgroundColor: "#1E1E1E" }}>
       <Text style={styles.HeadingFont}>Community Leaderboard</Text>
@@ -40,9 +41,16 @@ function Leaderboard() {
             {element}
           </Button>
         ))}
+      <View>
+        <Button mode="contained" style={{backgroundColor:"grey"}}
+        onPress={()=>{
+          setRefresh(refresh+1);
+        }}
+        >Refresh</Button>
+      </View>
       </View>
       <View>
-        {CommunityData.map((element, index) => (
+        {CommunityData?.map((element, index) => (
           <Text style={styles.Text}>
             {index + 1}: {element.name}
           </Text>
@@ -56,6 +64,7 @@ export default Leaderboard;
 
 const styles = StyleSheet.create({
   Text: {
+    marginBottom: 10,
     fontSize: 25,
     color: "white",
     fontWeight: "bold",

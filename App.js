@@ -124,13 +124,7 @@ export default function App() {
               options={{
                 headerTitle: "Carbs",
                 headerTitleAlign: "center",
-                headerRight: () => (
-                  <View style={{ marginRight: 20 }}>
-                    <Button onPress={()=>{}}>
-                      Profile
-                    </Button>
-                  </View>
-                ),
+                
                 //   tabBarIcon: ({size,focused,color}) => {
                 //   return (
                 //     <View>

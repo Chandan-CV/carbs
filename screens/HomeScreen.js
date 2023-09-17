@@ -4,7 +4,7 @@ import ShowScore from "../components/ShowScore";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from "expo-location";
 import YourActivity from "../components/YourActivity";
 
-function HomeScreen({ navigation }) {
+function HomeScreen() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
