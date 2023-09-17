@@ -7,15 +7,7 @@ import React, { useState } from 'react';
   import {useForm , Controller} from "react-hook-form";
 import { AddData } from '../firebaseFunctions';
 
-  const data = [
-    { label: 'Economy Class', value: '1' },
-    { label: 'Premium Economy', value: '2' },
-    { label: 'Business Class', value: '3' },
-    { label: 'First Class', value: '4' },
-    { label: 'Average (Unknown Class)', value: '5' },
-  ];
  
-  const onSubmit = (data) => console.log(data)
 
   const Form2 = () => {
     const {
@@ -28,8 +20,20 @@ import { AddData } from '../firebaseFunctions';
           lastName: "",
         },
       })
+    
+      const onSubmit = (data) => {
+        console.log(data);
+        AddData(data);
+        alert("Data Added");
+        
+      }
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
+    const[StartLatitudeA1, setStartLatitudeA1] = useState("");
+    const[StartLongitudeA1, setStartLongitudeA1] = useState("");
+    const[LandingLatitudeA2, setLandingLatitudeA2] = useState("");
+    const[LandingLongitudeA2, setLandingLongitudeA2] = useState("");
+    let data2={StartLatitudeA1, StartLongitudeA1, LandingLatitudeA2, LandingLongitudeA2};
     // const geocoder = new Google.maps.Geocoder();
     return (
         
@@ -57,6 +61,9 @@ import { AddData } from '../firebaseFunctions';
         console.log("data", data);
         console.log("details", details);
         console.log(JSON.stringify(details?.geometry?.location));
+        setStartLatitudeA1(JSON.stringify(details?.geometry?.location.lat));
+        setStartLongitudeA1(JSON.stringify(details?.geometry?.location.lng));
+
       }}
       query={{
         key: 'AIzaSyAeSLKGC-l-Snb-kOUigxqtXRgvPb84XFI',
@@ -66,7 +73,8 @@ import { AddData } from '../firebaseFunctions';
     />
     <Text >Landing Location</Text>
     <GooglePlacesAutocomplete
-      
+      GooglePlacesDetailsQuery={{ fields: "geometry" }}
+      fetchDetails={true}
       placeholder='Search'
       styles = {{
         container: {
@@ -83,10 +91,12 @@ import { AddData } from '../firebaseFunctions';
         // 'details' is provided when fetchDetails = true
         //get the lat and long
         
-        console.log(data, details);
-        console.log(data.description);
-        console.log(details.geometry);
-        console.log("hello");
+        console.log("data", data);
+        console.log("details", details);
+        console.log(JSON.stringify(details?.geometry?.location));
+        
+        setLandingLatitudeA2(JSON.stringify(details?.geometry?.location.lat));
+        setLandingLongitudeA2(JSON.stringify(details?.geometry?.location.lng));
       }}
       query={{
         key: 'AIzaSyAeSLKGC-l-Snb-kOUigxqtXRgvPb84XFI',
@@ -94,45 +104,9 @@ import { AddData } from '../firebaseFunctions';
         language: 'en',
       }}
     />
-      <View style={styles.Input}>
-        <Text>Class</Text>
-        <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={data}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Select Class' : '...'}
-          searchPlaceholder="Search..."
-          value={value}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setValue(item.value);
-            setIsFocus(false);
-          }}
-          renderLeftIcon={() => (
-            <AntDesign
-              style={styles.icon}
-              color={isFocus ? 'blue' : 'black'}
-              name="Safety"
-              size={20}
-            />
-          )}
-        />
-        </View>
-      {errors.firstName && <Text>This is required.</Text>}
-      
       
       </View>
-       <Button style={styles.Button} color="green" title="Standardize All" height="80" onPress={handleSubmit(onSubmit)} />
-       <View style={{marginVertical:10}}/>
-        <Button style={styles.Button2} title="Submit" onPress={handleSubmit(onSubmit)} />
+        <Button style={styles.Button2} title="Submit" onPress={()=>{console.log(data2)}} />
       </View>
     );
   };

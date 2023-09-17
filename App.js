@@ -1,28 +1,24 @@
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import HomeScreen from "./screens/HomeScreen";
 import Login from "./screens/Login";
 import { Ionicons } from "@expo/vector-icons";
 import { Button, PaperProvider } from "react-native-paper";
-import { createStackNavigator } from "@react-navigation/stack";
 import { useEffect, useState } from "react";
 import { auth } from "./fireBase";
 import ProfilePage from "./screens/ProfilePage";
 
 // react-native-vector-icons/Ionicons otherwise
-import Form from "./screens/Form";
-import Form2 from "./screens/Form2";
-import Form3 from "./screens/Form3";
 import HomeIcon from "./assets/icons/HomeIcon";
-import Community from "./assets/icons/Community";
 import LeaderboardIcon from "./assets/icons/LeaderboardsIcon";
 import TipsIcon from "./assets/icons/TipsIcon";
-import Profile from "./screens/Profile";
 import LogoIcon from "./assets/icons/LogoIcon";
 import leaderboard from "./screens/Leaderboard";
+import CommunityIcon from "./assets/icons/Community";
+import Community from "./screens/Community";
+import Tips from "./screens/Tips";
+import HomeScreen from "./screens/HomeScreen";
 // react-native-vector-icons/Ionicons otherwise.
 const Tab = createBottomTabNavigator();
 export default function App() {
@@ -63,7 +59,7 @@ export default function App() {
                         display: "flex",
                       }}
                     >
-                      <Community />
+                      <CommunityIcon />
                     </View>
                   );
                 } else if (route.name === "Leaderboards") {
@@ -120,11 +116,13 @@ export default function App() {
           >
             <Tab.Screen
               name="Home"
-              component={Profile}
+              component={HomeScreen}
               options={{
                 headerTitle: "Carbs",
                 headerTitleAlign: "center",
-                
+                headerBackgroundContainerStyle: {
+                  backgroundColor: "black",
+                },
                 //   tabBarIcon: ({size,focused,color}) => {
                 //   return (
                 //     <View>
@@ -134,9 +132,9 @@ export default function App() {
                 // },
               }}
             />
-            <Tab.Screen name="Community" component={Form} />
+            <Tab.Screen name="Community" component={Community} />
             <Tab.Screen name="Leaderboards" component={leaderboard} />
-            <Tab.Screen name="Tips" component={Form3} />
+            <Tab.Screen name="Tips" component={Tips} />
             <Tab.Screen name="Profile" component={ProfilePage} />
           </Tab.Navigator>
         </NavigationContainer>

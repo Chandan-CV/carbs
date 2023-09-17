@@ -32,40 +32,26 @@ const Login = () => {
       return <AppLoading />;
     }
     return (
-      <SafeAreaView style={styles.page}>
-        <SVG height={100} width={100} style={styles.img} />
-        <Text style={styles.headings}>Login</Text>
-        <Text style={styles.subheadings}>Email</Text>
-        <TextInput
-          style={styles.inputs}
-          value={email}
-          onChangeText={setEmail}
-          inputMode="email"
-        />
-        <Text style={styles.subheadings}>Password</Text>
-        <TextInput
-          style={styles.inputs}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={true}
-        />
-        <Text style={styles.texts}>Don't have an account?</Text>
-        <TouchableOpacity
-          onPress={() => {
-            setIsLogin(false);
-          }}
-          underlayColor="#fff"
-        >
-          <Text style={styles.links}>Create an account</Text>
-        </TouchableOpacity>
-        <Button
-          title="Submit"
-          onPress={() => {
-            signInWithEmailAndPassword(auth, email, password);
-          }}
-        />
-      </SafeAreaView>
-    );
+ 
+        <SafeAreaView style={styles.page}>
+            <SVG height={140} width={140} style={styles.img} />
+            <Text style={styles.headings}>Login</Text>
+            <Text style={styles.subheadings}>Email</Text>
+            <TextInput style={styles.inputs} value={email} onChangeText={setEmail} inputMode='email' />
+            <Text style={styles.subheadings}>Password</Text>
+            <TextInput style={styles.inputs} value={password} onChangeText={setPassword} secureTextEntry={true} />
+            <Text style={{ ...styles.texts, marginLeft: 35, marginVertical: 15 }}>Don't have an account?<TouchableOpacity
+                onPress={() => {setIsLogin(false)}}
+                underlayColor='#fff'
+            >
+                <Text style={styles.links}>Create an account</Text>
+            </TouchableOpacity></Text>
+            <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => { signInWithEmailAndPassword(auth,email,password)}}>
+                <Text style={styles.button}>SUBMIT</Text>
+            </TouchableOpacity>
+            <Text style={{ ...styles.subheadings, textAlign: "center" }}>carbs</Text>
+        </SafeAreaView >
+      );
   } else {
     return (
       <SafeAreaView style={styles.page}>
@@ -96,7 +82,7 @@ const Login = () => {
         <Text style={styles.texts}>already have an account?</Text>
         <TouchableOpacity
           onPress={() => {
-            setIsLogin(false);
+            setIsLogin(true);
           }}
           underlayColor="#fff"
         >
@@ -117,46 +103,51 @@ export default Login;
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: "#1e1e1e",
-    height: "100%",
+      backgroundColor: "#1e1e1e",
+      height: "100%",
   },
   headings: {
-    textAlign: "center",
-    fontSize: 45,
-    marginVertical: 40,
-    fontWeight: "bold",
-    color: "#ffff",
-    fontFamily: "Krona",
+      textAlign: "center",
+      fontSize: 45,
+      marginVertical: 25,
+      color: "#ffff",
+      fontFamily: 'Krona'
+
   },
   img: {
-    alignItems: "center",
+      alignSelf: 'center'
   },
   subheadings: {
-    fontSize: 25,
-    marginHorizontal: 35,
-    marginTop: 25,
-    marginBottom: 10,
-    fontWeight: "bold",
-    color: "#ffff",
-    fontFamily: "Krona",
+      fontSize: 20,
+      marginHorizontal: 35,
+      marginTop: 25,
+      marginBottom: 10,
+      color: "#ffff",
+      fontFamily: 'Krona'
   },
   inputs: {
-    borderBottomColor: "#ffff",
-    borderBottomWidth: 1,
-    marginHorizontal: 35,
-    fontSize: 20,
-    color: "#fff",
+      borderBottomColor: '#ffff',
+      borderBottomWidth: 1,
+      marginHorizontal: 35,
+      fontSize: 20,
+      color: '#fff'
   },
   texts: {
-    marginTop: 20,
-    marginLeft: 20,
-    color: "#fff",
+      color: '#fff'
   },
   links: {
-    color: "#fff",
-    fontWeight: "900",
-    margin: 20,
-    padding: 0,
-    textAlignVertical: "bottom",
+      color: '#fff',
+      fontWeight: '900',
+      marginTop: 0,
+      marginHorizontal: 20,
+      padding: 0,
   },
-});
+  button: {
+      backgroundColor: '#fff',
+      textAlign: 'center',
+      fontFamily: 'Krona',
+      padding: 10,
+      margin: 25,
+      width: 150
+  }
+})

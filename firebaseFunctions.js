@@ -1,6 +1,17 @@
 import firebase from "firebase/compat/app";
 import "firebase/firestore";
-import { collection, addDoc, updateDoc, setDoc, doc, getDoc, query, where, getDocs, orderBy } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  setDoc,
+  doc,
+  getDoc,
+  query,
+  where,
+  getDocs,
+  orderBy,
+} from "firebase/firestore";
 import { auth, db } from "./fireBase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -34,7 +45,7 @@ export const addCommunity = async (communityKey) => {
   try {
     communitiesraw = await getDoc(doc(db, "Users", auth.currentUser.uid));
     communities = await communitiesraw.data().communities;
-    console.log(communities)
+    console.log(communities);
     await updateDoc(doc(db, "Users", auth.currentUser.uid), {
       communities: [...communities, communityKey],
     }).then(() => {
@@ -45,11 +56,9 @@ export const addCommunity = async (communityKey) => {
   }
 };
 
-
-
-export async function getCommunites(){
+export async function getCommunites() {
   try {
-    communitiesraw =  await getDoc(doc(db, "Users", auth.currentUser.uid));
+    communitiesraw = await getDoc(doc(db, "Users", auth.currentUser.uid));
     communities = await communitiesraw.data().communities;
     return communities;
   } catch (e) {
@@ -59,7 +68,11 @@ export async function getCommunites(){
 
 export const getCommunityData = async (communityKey) => {
   try {
-    const q = query(collection(db, "Users"), where("communities", "array-contains", communityKey), orderBy("CarbonFootprint", "asc"));
+    const q = query(
+      collection(db, "Users"),
+      where("communities", "array-contains", communityKey),
+      orderBy("CarbonFootprint", "asc")
+    );
     const querySnapshot = await getDocs(q);
     const data = querySnapshot.docs.map((doc) => doc.data());
     console.log(data);
@@ -67,4 +80,23 @@ export const getCommunityData = async (communityKey) => {
   } catch (e) {
     console.log(e);
   }
+};
+
+export const getdbuser = () => {
+  console.log("wait a minnnn");
+  const docRef = doc(db, "Users", auth.currentUser.uid);
+  return getDoc(docRef)
+    .then(async(doc) => {
+      if (doc.exists()) {
+        console.log("Document data:", doc.data());
+        return await doc.data();
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
 };

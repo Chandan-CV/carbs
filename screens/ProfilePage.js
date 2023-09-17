@@ -11,13 +11,14 @@ function ProfilePage() {
     <SafeAreaView>
       <View style={{ marginTop: 50 }}>
         <Button
+        mode="contained"
           onPress={() => {
             auth.signOut();
           }}
         >
           Logout
         </Button>
-        <View>
+        <View style={{marginTop:50}}>
           <Text>Enter the community secret key </Text>
           <TextInput
             placeholder="enter the community secret key"
@@ -25,6 +26,7 @@ function ProfilePage() {
             onChangeText={(e) => setCommunityKey(e)}
           />
           <Button
+          style={{marginTop:30}}
             onPress={() => {
               addCommunity(communityKey);
             }}

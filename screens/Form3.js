@@ -6,6 +6,7 @@ import React, { useState } from 'react';
   import GOOGLE_MAPS_APIKEY from '../process.env';
   import {useForm , Controller} from "react-hook-form";
 import { AddData } from '../firebaseFunctions';
+import { auth } from '../fireBase';
 
   const data = [
     { label: 'None', value: '0' },
@@ -20,9 +21,8 @@ import { AddData } from '../firebaseFunctions';
     { label: 'Above 500cc', value: '3' },
   ];
  
-  const onSubmit = (data) => AddData(data);
-
-  const Form3 = () => {
+ 
+  const Form3 = ({navigation}) => {
     const {
         control,
         handleSubmit,
@@ -34,7 +34,19 @@ import { AddData } from '../firebaseFunctions';
         },
       })
     const [value, setValue] = useState(null);
+    const[value2, setValue2] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
+    const [isFocus2, setIsFocus2] = useState(false);
+    const [CarType, setCarType] = useState(0);
+    const [BikeType, setBikeType] = useState(0);
+      let data3={CarType, BikeType};
+      const onSubmit = (data) => {
+        alert("Data Added");
+        console.log(data3);
+        AddData(data3);
+        alert("Data Added");
+      }
+    
     // const geocoder = new Google.maps.Geocoder();
     return (
       <View style={styles.container}>
@@ -60,6 +72,7 @@ import { AddData } from '../firebaseFunctions';
           onChange={item => {
             setValue(item.value);
             setIsFocus(false);
+            setCarType(item.value);
           }}
           renderLeftIcon={() => (
             <AntDesign
@@ -75,7 +88,7 @@ import { AddData } from '../firebaseFunctions';
       <View style={styles.Input}>
         <Text>Bike Type</Text>
         <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+          style={[styles.dropdown, isFocus2 && { borderColor: 'blue' }]}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
@@ -84,20 +97,21 @@ import { AddData } from '../firebaseFunctions';
           search
           maxHeight={300}
           labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Select Type' : '...'}
+          valueField="value2"
+          placeholder={!isFocus2 ? 'Select Type' : '...'}
           searchPlaceholder="Search..."
           value={value}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
+          onFocus={() => setIsFocus2(true)}
+          onBlur={() => setIsFocus2(false)}
           onChange={item => {
-            setValue(item.value);
-            setIsFocus(false);
+            setValue2(item.value);
+            setIsFocus2(false);
+            setBikeType(item.value);
           }}
           renderLeftIcon={() => (
             <AntDesign
               style={styles.icon}
-              color={isFocus ? 'blue' : 'black'}
+              color={isFocus2 ? 'blue' : 'black'}
               name="Safety"
               size={20}
             />
@@ -110,7 +124,12 @@ import { AddData } from '../firebaseFunctions';
       </View>
       <View style={styles.container3}>
       <Button style={styles.Button} color="green" title="Standardize All" height="80" onPress={handleSubmit(onSubmit)} />
-      <Button style={styles.Button2} title="Submit" onPress={handleSubmit(onSubmit)} />
+      <Button style={styles.Button2} title="Submit" onPress={()=>{
+         console.log(data3);
+         AddData(data3);
+         alert("Data Added, please login again after this");
+        auth.signOut();
+      }} />
       </View>
       </View>
     );
