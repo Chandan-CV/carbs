@@ -22,6 +22,7 @@ import LeaderboardIcon from "./assets/icons/LeaderboardsIcon";
 import TipsIcon from "./assets/icons/TipsIcon";
 import Profile from "./screens/Profile";
 import LogoIcon from "./assets/icons/LogoIcon";
+import leaderboard from "./screens/Leaderboard";
 // react-native-vector-icons/Ionicons otherwise.
 const Tab = createBottomTabNavigator();
 export default function App() {
@@ -125,7 +126,7 @@ export default function App() {
                 headerTitleAlign: "center",
                 headerRight: () => (
                   <View style={{ marginRight: 20 }}>
-                    <Button>
+                    <Button onPress={()=>{}}>
                       Profile
                     </Button>
                   </View>
@@ -140,7 +141,7 @@ export default function App() {
               }}
             />
             <Tab.Screen name="Community" component={Form} />
-            <Tab.Screen name="Leaderboards" component={Form2} />
+            <Tab.Screen name="Leaderboards" component={leaderboard} />
             <Tab.Screen name="Tips" component={Form3} />
             <Tab.Screen name="Profile" component={ProfilePage} />
           </Tab.Navigator>

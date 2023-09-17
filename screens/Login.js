@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { Button, Text, TextInput } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {signInWithEmailAndPassword} from 'firebase/auth'
-import { auth } from '../fireBase'
 import { registerUser } from '../firebaseFunctions'
+import { auth } from '../fireBase'
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
