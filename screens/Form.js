@@ -5,20 +5,22 @@ import Form3 from "../components/Form3";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
   
-const Tab2 = createBottomTabNavigator();
-  function Form() {
+import {createStackNavigator} from 'react-navigation-stack';
+import {createAppContainer} from 'react-navigation';
+import Home from '../screens/Home';
+import Detail from '../screens/Detail';
 
-    return (
-        <PaperProvider>
-        <NavigationContainer>
-     <Tab2.Navigator>
-        <Tab2.Screen name="Form1" component={Form1} />
-        <Tab2.Screen name="Form2" component={Form2} />
-        <Tab2.Screen name="Form3" component={Form3} />
-        </Tab2.Navigator>
-        </NavigationContainer>
-        </PaperProvider>
-    );
-  }
 
-    export default Form;
+const stackNavigatorOptions = {
+    headerShown:false
+}
+
+const AppNavigator = createStackNavigator({
+    Home:{screen:Home},
+    Detail:{screen:Detail}
+},
+{
+    defaultNavigationOptions:stackNavigatorOptions
+}
+)
+export default Form(AppNavigator);
