@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-function Community(props) {
+function CommunityIcon(props) {
     return (
         <Svg
           width={30}
@@ -22,4 +22,4 @@ function Community(props) {
       )
 }
 
-export default Community
+export default CommunityIcon

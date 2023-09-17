@@ -1,19 +1,19 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { PaperProvider } from "react-native-paper";
 import Form from "./screens/Form";
-import Form2 from "./screens/Form2";
-import Form3 from "./screens/Form3";
+import Form2 from "./components/Form2";
+import Form3 from "./components/Form3";
 import HomeIcon from "./assets/icons/HomeIcon";
-import Community from "./assets/icons/Community";
+import CommunityIcon from "./assets/icons/CommunityIcon";
+import Community from "./screens/Community";
 import LeaderboardIcon from "./assets/icons/LeaderboardsIcon";
 import TipsIcon from "./assets/icons/TipsIcon";
 import Profile from "./screens/Profile";
-import LogoIcon from "./assets/icons/LogoIcon";
 // react-native-vector-icons/Ionicons otherwise.
 const Tab = createBottomTabNavigator();
 export default function App() {
@@ -34,7 +34,7 @@ export default function App() {
               } else if (route.name === "Community") {
                 return(
                   <View style={{alignItems:"center", justifyContent:"center",display:"flex"}}>
-                  <Community />
+                  <CommunityIcon />
                   </View>)
               }
               else if (route.name === "Leaderboards") {
@@ -64,26 +64,24 @@ export default function App() {
               display: "flex",
 
             },
+            
           })}
         >
           <Tab.Screen
             name="Home"
-            component={Profile}
+            component={HomeScreen}
             options={{
               headerTitle: "Carbs",
               headerTitleAlign: "center",
-            //   tabBarIcon: ({size,focused,color}) => {
-            //   return (
-            //     <View>
-            //     <LogoIcon />
-            //     </View>
-            //   );
-            // },
-           }}
+              headerStyle: {
+                backgroundColor: "white",
+              }
+
+            }}
           />
-          <Tab.Screen name="Community" component={Form} />
-          <Tab.Screen name="Leaderboards" component={Form2} />
-          <Tab.Screen name="Tips" component={Form3} />
+          <Tab.Screen name="Community" component={Community} />
+          <Tab.Screen name="Leaderboards" component={Form} />
+          <Tab.Screen name="Tips" component={Form} />
         </Tab.Navigator>
       </NavigationContainer>
     </PaperProvider>

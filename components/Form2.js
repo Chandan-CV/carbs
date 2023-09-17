@@ -29,6 +29,11 @@ import React, { useState } from 'react';
       })
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
+    const[StartLatitudeA1, setStartLatitudeA1] = useState("");
+    const[StartLongitudeA1, setStartLongitudeA1] = useState("");
+    const[LandingLatitudeA2, setLandingLatitudeA2] = useState("");
+    const[LandingLongitudeA2, setLandingLongitudeA2] = useState("");
+    let data2=[StartLatitudeA1, StartLongitudeA1, LandingLatitudeA2, LandingLongitudeA2];
     // const geocoder = new Google.maps.Geocoder();
     return (
         
@@ -56,6 +61,9 @@ import React, { useState } from 'react';
         console.log("data", data);
         console.log("details", details);
         console.log(JSON.stringify(details?.geometry?.location));
+        setStartLatitudeA1(JSON.stringify(details?.geometry?.location.lat));
+        setStartLongitudeA1(JSON.stringify(details?.geometry?.location.lng));
+
       }}
       query={{
         key: 'AIzaSyAeSLKGC-l-Snb-kOUigxqtXRgvPb84XFI',
@@ -65,7 +73,8 @@ import React, { useState } from 'react';
     />
     <Text >Landing Location</Text>
     <GooglePlacesAutocomplete
-      
+      GooglePlacesDetailsQuery={{ fields: "geometry" }}
+      fetchDetails={true}
       placeholder='Search'
       styles = {{
         container: {
@@ -82,10 +91,12 @@ import React, { useState } from 'react';
         // 'details' is provided when fetchDetails = true
         //get the lat and long
         
-        console.log(data, details);
-        console.log(data.description);
-        console.log(details.geometry);
-        console.log("hello");
+        console.log("data", data);
+        console.log("details", details);
+        console.log(JSON.stringify(details?.geometry?.location));
+        
+        setLandingLatitudeA2(JSON.stringify(details?.geometry?.location.lat));
+        setLandingLongitudeA2(JSON.stringify(details?.geometry?.location.lng));
       }}
       query={{
         key: 'AIzaSyAeSLKGC-l-Snb-kOUigxqtXRgvPb84XFI',
@@ -93,42 +104,9 @@ import React, { useState } from 'react';
         language: 'en',
       }}
     />
-      <View style={styles.Input}>
-        <Text>Class</Text>
-        <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={data}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Select Class' : '...'}
-          searchPlaceholder="Search..."
-          value={value}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setValue(item.value);
-            setIsFocus(false);
-          }}
-          renderLeftIcon={() => (
-            <AntDesign
-              style={styles.icon}
-              color={isFocus ? 'blue' : 'black'}
-              name="Safety"
-              size={20}
-            />
-          )}
-        />
-        </View>
-      {errors.firstName && <Text>This is required.</Text>}
       
       </View>
-        <Button style={styles.Button2} title="Submit" onPress={handleSubmit(onSubmit)} />
+        <Button style={styles.Button2} title="Submit" onPress={()=>{console.log(data2)}} />
       </View>
     );
   };
