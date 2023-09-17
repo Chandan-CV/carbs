@@ -13,26 +13,25 @@ const Login = () => {
     const [fontsLoaded] = useFonts({
         'Krona': require('../assets/fonts/KronaOne-Regular.ttf'),
     });
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    }
     return (
         <SafeAreaView style={styles.page}>
-            <SVG height={100} width={100} style={styles.img} />
+            <SVG height={140} width={140} style={styles.img} />
             <Text style={styles.headings}>Login</Text>
             <Text style={styles.subheadings}>Email</Text>
             <TextInput style={styles.inputs} value={email} onChangeText={setEmail} inputMode='email' />
             <Text style={styles.subheadings}>Password</Text>
             <TextInput style={styles.inputs} value={password} onChangeText={setPassword} secureTextEntry={true} />
-            <Text style={styles.texts}>Don't have an account?</Text><TouchableOpacity
+            <Text style={{ ...styles.texts, marginLeft: 35, marginVertical: 15 }}>Don't have an account?<TouchableOpacity
                 onPress={() => navigate('HomeScreen')}
                 underlayColor='#fff'
             >
                 <Text style={styles.links}>Create an account</Text>
+            </TouchableOpacity></Text>
+            <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => { }}>
+                <Text style={styles.button}>SUBMIT</Text>
             </TouchableOpacity>
-            <Button title='Submit' onPress={() => {
-            }} />
-        </SafeAreaView>
+            <Text style={{ ...styles.subheadings, textAlign: "center" }}>carbs</Text>
+        </SafeAreaView >
     )
 }
 
@@ -47,20 +46,19 @@ const styles = StyleSheet.create({
     headings: {
         textAlign: "center",
         fontSize: 45,
-        marginVertical: 40,
-        fontWeight: 'bold',
+        marginVertical: 25,
         color: "#ffff",
         fontFamily: 'Krona'
+
     },
     img: {
-        alignItems: 'center'
+        alignSelf: 'center'
     },
     subheadings: {
-        fontSize: 25,
+        fontSize: 20,
         marginHorizontal: 35,
         marginTop: 25,
         marginBottom: 10,
-        fontWeight: 'bold',
         color: "#ffff",
         fontFamily: 'Krona'
     },
@@ -77,8 +75,16 @@ const styles = StyleSheet.create({
     links: {
         color: '#fff',
         fontWeight: '900',
-        margin: 20,
+        marginTop: 0,
+        marginHorizontal: 20,
         padding: 0,
-        textAlignVertical: 'bottom'
     },
+    button: {
+        backgroundColor: '#fff',
+        textAlign: 'center',
+        fontFamily: 'Krona',
+        padding: 10,
+        margin: 25,
+        width: 150
+    }
 })
